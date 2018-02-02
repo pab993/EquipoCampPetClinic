@@ -51,3 +51,8 @@ INSERT INTO visits VALUES (1, 7, '2013-01-01', 'rabies shot');
 INSERT INTO visits VALUES (2, 8, '2013-01-02', 'rabies shot');
 INSERT INTO visits VALUES (3, 8, '2013-01-03', 'neutered');
 INSERT INTO visits VALUES (4, 7, '2013-01-04', 'spayed');
+
+INSERT INTO ofertas VALUES (50, 'Oferta Expirada', 'Este es', 50, '2016-04-05');
+INSERT INTO ofertas VALUES (51, 'Oferta Expirada', 'Este es el detalle de una oferta expirada', 20, '2015-11-05');
+INSERT INTO ofertas VALUES (52, 'Oferta vigente', 'Este es el detalle de una oferta vigente', 30, '2018-11-05');
+INSERT INTO ofertas VALUES (53, 'Oferta vigente', 'Este es el detalle de una oferta vigente', 50, '2018-12-25');

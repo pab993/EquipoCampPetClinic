@@ -18,6 +18,7 @@ package org.springframework.samples.petclinic.service;
 import java.util.Collection;
 
 import org.springframework.dao.DataAccessException;
+import org.springframework.samples.petclinic.model.Oferta;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
@@ -67,5 +68,11 @@ public interface ClinicService {
 	Collection<Specialty> findAllSpecialties() throws DataAccessException;
 	void saveSpecialty(Specialty specialty) throws DataAccessException;
 	void deleteSpecialty(Specialty specialty) throws DataAccessException;
+	
+	Collection<Oferta> findAll() throws DataAccessException;
+	Oferta findById(int id)  throws DataAccessException;
+	void save(Oferta o)  throws DataAccessException;
+	void deleteOferta(Oferta o)  throws DataAccessException;
+	Collection<Oferta> findAllNotExpired() throws DataAccessException;
 
 }

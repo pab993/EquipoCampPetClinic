@@ -22,12 +22,14 @@ import org.springframework.cache.annotation.Cacheable;
 import org.springframework.dao.DataAccessException;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.orm.ObjectRetrievalFailureException;
+import org.springframework.samples.petclinic.model.Oferta;
 import org.springframework.samples.petclinic.model.Owner;
 import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.model.PetType;
 import org.springframework.samples.petclinic.model.Specialty;
 import org.springframework.samples.petclinic.model.Vet;
 import org.springframework.samples.petclinic.model.Visit;
+import org.springframework.samples.petclinic.repository.OfertaRepository;
 import org.springframework.samples.petclinic.repository.OwnerRepository;
 import org.springframework.samples.petclinic.repository.PetRepository;
 import org.springframework.samples.petclinic.repository.PetTypeRepository;
@@ -54,6 +56,7 @@ public class ClinicServiceImpl implements ClinicService {
     private VisitRepository visitRepository;
     private SpecialtyRepository specialtyRepository;
 	private PetTypeRepository petTypeRepository;
+	private OfertaRepository ofertaRepository;
 
     @Autowired
      public ClinicServiceImpl(
@@ -62,13 +65,15 @@ public class ClinicServiceImpl implements ClinicService {
     		 OwnerRepository ownerRepository,
     		 VisitRepository visitRepository,
     		 SpecialtyRepository specialtyRepository,
-			 PetTypeRepository petTypeRepository) {
+			 PetTypeRepository petTypeRepository,
+			 OfertaRepository ofertaRepository) {
         this.petRepository = petRepository;
         this.vetRepository = vetRepository;
         this.ownerRepository = ownerRepository;
         this.visitRepository = visitRepository;
         this.specialtyRepository = specialtyRepository; 
 		this.petTypeRepository = petTypeRepository;
+		this.ofertaRepository = ofertaRepository;
     }
 
 	@Override
@@ -285,7 +290,42 @@ public class ClinicServiceImpl implements ClinicService {
 		return visitRepository.findByPetId(petId);
 	}
 	
+	//Ofertas
 	
+	@Override
+	@Transactional(readOnly = true)
+	public Collection<Oferta> findAll() {
+		Collection<Oferta> ofertas = ofertaRepository.findAll();
+		return ofertas;
+	}
 
+	@Override
+	@Transactional(readOnly = true)
+	public Oferta findById(int id) {
+	Oferta o = ofertaRepository.findById(id);
+	return o;
+}
+	
+	@Override
+	@Transactional
+	public void save(Oferta o) {
+		ofertaRepository.save(o);
+
+	}
+	
+	@Override
+	@Transactional
+	public void deleteOferta(Oferta o) {
+		// TODO Auto-generated method stub
+		ofertaRepository.delete(o);
+	}
+	
+//	 Servicio que devuelve la lista de ofertas cuya fecha no ha expirado
+	@Override
+	@Transactional(readOnly = true)
+	public Collection<Oferta> findAllNotExpired(){
+		Collection<Oferta> ofertas = ofertaRepository.findAllNotExpired();
+		return ofertas;
+	}
 
 }
