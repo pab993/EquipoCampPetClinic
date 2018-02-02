@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.dao.DataAccessException;
 import org.springframework.samples.petclinic.model.Oferta;
 import org.springframework.samples.petclinic.model.Owner;
+import org.springframework.samples.petclinic.model.Pet;
 import org.springframework.samples.petclinic.repository.OfertaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -25,22 +26,26 @@ public class JpaOfertaRepositoryImpl implements OfertaRepository{
 	@Override
 	public Collection<Oferta> findAllNotExpired() {
 		// TODO Auto-generated method stub
-		Query query = this.em.createQuery("select o from Oferta o where o.fechaCad >= current_date()");
-        return query.getResultList();
+		return this.em.createQuery("select o from Oferta o where o.fechaCad >= current_date()").getResultList();
+
 	}
 
-	@Override
-	public Oferta findById(int id) {
-		Query query = this.em.createQuery("SELECT o FROM Oferta o where o.id =:id");
-        query.setParameter("id", id);
-        return (Oferta) query.getSingleResult();
-	}
+//	@Override
+//	public Oferta findById(int id) {
+//		Query query = this.em.createQuery("SELECT o FROM Oferta o where o.id =:id");
+//        query.setParameter("id", id);
+//        return (Oferta) query.getSingleResult();
+//	}
+	
+    @Override
+    public Oferta findById(int id) {
+        return this.em.find(Oferta.class, id);
+    }
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public Collection<Oferta> findAll() throws DataAccessException{
-		Query query = this.em.createQuery("select o from Oferta o");
-        return query.getResultList();
+		return this.em.createQuery("SELECT oferta FROM Oferta oferta").getResultList();
 	}
 
 	@Override

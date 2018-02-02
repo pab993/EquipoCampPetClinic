@@ -23,7 +23,7 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @Table(name = "ofertas")
 @JsonSerialize(using = JacksonCustomOfertaSerializer.class)
 @JsonDeserialize(using = JacksonCustomOfertaDeserializer.class)
-public class Oferta extends NamedEntity{
+public class Oferta extends BaseEntity{
 	
 	@Column(name = "titulo")
     @NotEmpty

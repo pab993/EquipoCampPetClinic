@@ -13,8 +13,8 @@ public interface OfertaRepository{
 	Collection<Oferta> findAllNotExpired() throws DataAccessException;
 	Oferta findById(int id) throws DataAccessException;
 	Collection<Oferta> findAll() throws DataAccessException;
-	void save(Oferta o);
-	void delete(Oferta o);
+	void save(Oferta o) throws DataAccessException;
+	void delete(Oferta o) throws DataAccessException;
 		
 
 }

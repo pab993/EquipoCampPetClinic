@@ -31,14 +31,13 @@ public class OfertaController {
 
 	
 	//GET UNA OFERTA POR ID
-	@RequestMapping(value = "/{ofertatId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	public ResponseEntity<Oferta> getOferta(@PathVariable("ofertaId") int ofertaId){
+	@RequestMapping(value = "/{ofertaId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<Oferta> getOferta(@PathVariable("ofertaId") Integer ofertaId){
 		System.out.println(ofertaId);
 		Oferta oferta = this.clinicService.findById(ofertaId);
 		if(oferta == null){
 			return new ResponseEntity<Oferta>(HttpStatus.NOT_FOUND);
 		}
-		System.out.println(oferta.getName());
 		return new ResponseEntity<Oferta>(oferta, HttpStatus.OK);
 	}
 

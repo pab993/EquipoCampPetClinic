@@ -28,11 +28,11 @@ public class JacksonCustomOfertaDeserializer extends StdDeserializer<Oferta> {
 		JsonNode node = parser.getCodec().readTree(parser);
 		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
 		Oferta oferta = new Oferta();
-		int id = node.get("id").asInt();
+		Integer id = node.get("id").asInt();
 		Date fechaCadFormatted = null;
 		String titulo = node.get("titulo").asText(null);
 		String detalle = node.get("detalle").asText(null);
-		int descuento = node.get("descuento").asInt();
+		Integer descuento = node.get("descuento").asInt();
 		String fechaCad = node.get("fechaCad").asText(null);
 		try {
 			fechaCadFormatted = formatter.parse(fechaCad);

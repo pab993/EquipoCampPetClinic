@@ -69,5 +69,5 @@ CREATE TABLE ofertas (
 	titulo VARCHAR(255),
 	detalle VARCHAR(255),
 	descuento INTEGER,
-	fechaCad DATE
+	fecha_cad DATE
 );
